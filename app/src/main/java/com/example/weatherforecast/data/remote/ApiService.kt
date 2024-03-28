@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("data/2.5/group")
+    @GET("group")
     suspend fun getSelectedLocationsWeatherData(
         /* city code
             5128638 new york

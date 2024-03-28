@@ -7,6 +7,12 @@ import kotlinx.coroutines.flow.Flow
 
 class WeatherForecastInteractor(private val weatherForecastRepository: IWeatherForecastRepository) :
     WeatherForecastUseCase {
+    override fun getCurrentLocationWeatherData(
+        latitude: Double,
+        longitude: Double
+    ): Flow<Resource<Weather>> =
+        weatherForecastRepository.getCurrentLocationWeatherData(latitude, longitude)
+
     override fun getSelectedLocationsWeatherData(): Flow<Resource<List<Weather>>> =
         weatherForecastRepository.getSelectedLocationsWeatherData()
 }

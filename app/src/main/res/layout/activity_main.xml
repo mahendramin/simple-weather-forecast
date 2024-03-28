@@ -24,6 +24,8 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvCurrentLocationWeather"
         android:layout_width="0dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
         android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toTopOf="@id/tvOtherSelectedLocations"
@@ -114,6 +116,29 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <ProgressBar
+        android:id="@+id/pbCurrentLocationWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:visibility="visible"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/tvOtherSelectedLocations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation"/>
+
+    <TextView
+        android:id="@+id/tvCurrentLocationWeatherErrorMessage"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        tools:text="Some error message"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tvOtherSelectedLocations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation"/>
 
     <TextView
         android:id="@+id/tvOtherSelectedLocations"

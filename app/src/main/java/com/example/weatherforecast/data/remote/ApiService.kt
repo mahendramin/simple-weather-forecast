@@ -1,11 +1,21 @@
 package com.example.weatherforecast.data.remote
 
 import com.example.weatherforecast.data.remote.response.SelectedLocationWeatherResponse
+import com.example.weatherforecast.data.remote.response.WeatherResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
+
+    @GET("weather")
+    suspend fun getCurrentLocationWeatherData(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
+        @Query("units") units: String = "metric",
+        @Query("appid") appId: String = "replace this with your own API key"
+    ): Response<WeatherResponse>
+
     @GET("group")
     suspend fun getSelectedLocationsWeatherData(
         /* city code

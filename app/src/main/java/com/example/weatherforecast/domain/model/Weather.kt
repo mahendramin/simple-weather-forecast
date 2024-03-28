@@ -7,4 +7,5 @@ data class Weather (
     val weatherDetail: String,
     val temperature: Float,
     val humidity: Int,
+    val lastUpdated: Long
 )

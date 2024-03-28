@@ -10,5 +10,6 @@ fun WeatherResponse.toDomain(): Weather =
         weather = weather.firstOrNull()?.main ?: "",
         weatherDetail = weather.firstOrNull()?.description ?: "",
         temperature = main.temp,
-        humidity = main.humidity
+        humidity = main.humidity,
+        lastUpdated = System.currentTimeMillis()
     )

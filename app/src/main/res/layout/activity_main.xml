@@ -24,14 +24,14 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvCurrentLocationWeather"
         android:layout_width="0dp"
-        android:visibility="invisible"
-        tools:visibility="visible"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toTopOf="@id/tvOtherSelectedLocations"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation">
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -121,24 +121,25 @@
         android:id="@+id/pbCurrentLocationWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/tvOtherSelectedLocations"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation"/>
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvCurrentLocationWeatherErrorMessage"
-        tools:visibility="visible"
-        android:visibility="gone"
         android:layout_width="wrap_content"
-        tools:text="Some error message"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/tvOtherSelectedLocations"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCurrentLocation"/>
+        android:padding="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/cvCurrentLocationWeather"
+        app:layout_constraintEnd_toEndOf="@id/cvCurrentLocationWeather"
+        app:layout_constraintStart_toStartOf="@id/cvCurrentLocationWeather"
+        app:layout_constraintTop_toTopOf="@id/cvCurrentLocationWeather"
+        tools:text="Some error message"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvOtherSelectedLocations"
@@ -168,25 +169,22 @@
     <ProgressBar
         android:id="@+id/pbSelectedLocations"
         android:layout_width="wrap_content"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvOtherSelectedLocations" />
+        app:layout_constraintTop_toBottomOf="@id/tvOtherSelectedLocations"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvSelectedLocationsErrorMessage"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        tools:visibility="visible"
-        tools:text="Some error message"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvOtherSelectedLocations" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/tvOtherSelectedLocations"
+        tools:text="Some error message"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

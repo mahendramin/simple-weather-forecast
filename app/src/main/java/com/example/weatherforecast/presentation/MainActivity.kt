@@ -2,6 +2,7 @@ package com.example.weatherforecast.presentation
 
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -16,7 +17,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -69,13 +69,12 @@ class MainActivity : AppCompatActivity() {
                                 tvCurrentLocationWeatherMain.text = weather.weather
                                 tvCurrentLocationWeatherTemperature.text =
                                     "Temperature: ${weather.temperature} °C"
-                                val calendar = Calendar.getInstance()
-                                val dateFormat =
-                                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-                                tvCurrentLocationWeatherLastUpdatedDate.text =
-                                    "Last updated: ${dateFormat.format(calendar.time)}"
+                                val date = java.util.Date(weather.lastUpdated)
+                                val format = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+                                tvCurrentLocationWeatherLastUpdatedDate.text = format.format(date)
                             }
                         }
+                        showErrorMessage(binding.tvCurrentLocationWeatherErrorMessage, false)
                     }
 
                     is Resource.Error -> {
@@ -109,6 +108,7 @@ class MainActivity : AppCompatActivity() {
                             isOtherSelectedLocations = true
                         )
                         it.data?.let { weatherList -> showSelectedLocationsWeatherData(weatherList) }
+                        //showErrorMessage(binding.tvSelectedLocationsErrorMessage, false)
                     }
 
                     is Resource.Error -> {
@@ -146,7 +146,9 @@ class MainActivity : AppCompatActivity() {
                         latitude = location.latitude,
                         longitude = location.longitude
                     )
+                    Log.d("hahaha", "${location.latitude} ${location.longitude}")
                 } else {
+                    Log.d("hahaha", "ga dapet")
                     showErrorMessage(
                         binding.tvCurrentLocationWeatherErrorMessage,
                         true,

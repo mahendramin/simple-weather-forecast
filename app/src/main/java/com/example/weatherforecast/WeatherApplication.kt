@@ -1,6 +1,7 @@
 package com.example.weatherforecast
 
 import android.app.Application
+import com.example.weatherforecast.di.dataStoreModule
 import com.example.weatherforecast.di.networkModule
 import com.example.weatherforecast.di.repositoryModule
 import com.example.weatherforecast.di.useCaseModule
@@ -21,7 +22,8 @@ class WeatherApplication: Application() {
                     networkModule,
                     repositoryModule,
                     useCaseModule,
-                    viewModelModule
+                    viewModelModule,
+                    dataStoreModule
                 )
             )
         }

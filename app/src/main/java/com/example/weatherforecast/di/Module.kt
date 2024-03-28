@@ -1,14 +1,19 @@
 package com.example.weatherforecast.di
 
-import com.example.weatherforecast.presentation.MainViewModel
+import android.content.Context
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.weatherforecast.data.WeatherForecastRepository
+import com.example.weatherforecast.data.local.WeatherDataStore
 import com.example.weatherforecast.data.remote.ApiService
 import com.example.weatherforecast.data.remote.RemoteDataSource
 import com.example.weatherforecast.domain.repository.IWeatherForecastRepository
 import com.example.weatherforecast.domain.usecase.WeatherForecastInteractor
 import com.example.weatherforecast.domain.usecase.WeatherForecastUseCase
+import com.example.weatherforecast.presentation.MainViewModel
+import com.example.weatherforecast.utils.NetworkUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -40,13 +45,25 @@ val networkModule = module {
             .build()
         retrofit.create(ApiService::class.java)
     }
+    single { NetworkUtils(androidContext()) }
 }
 
 val repositoryModule = module {
     single { RemoteDataSource(get()) }
+    single { WeatherDataStore(get()) }
     single<IWeatherForecastRepository> {
         WeatherForecastRepository(
+            get(),
+            get(),
             get()
         )
     }
 }
+
+val dataStoreModule = module {
+    single { provideDataStore(androidContext()) }
+}
+
+private val Context.dataStore by preferencesDataStore(name = "weather")
+
+fun provideDataStore(context: Context) = context.dataStore
